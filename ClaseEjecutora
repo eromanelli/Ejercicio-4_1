@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Ejecutora {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Empresa e = new Empresa();
+		int respuesta,dni;
+		
+		Scanner entrada = new Scanner (System.in);
+		do
+		{
+		
+		System.out.print("MENU DE OPCIONES: 1=AGREGAR UN EMPLEADO 2=ELIMINAR UN EMPLEADO 3=LISTAR SUELDOS DE EMPLEADOS "
+				+ "4=INFORMAR TOTAL A PAGAR POR VENTAS 0=FIN DE OPERACIONES. INGRESE OPCION: " );
+		respuesta=entrada.nextInt();
+		
+			switch(respuesta) 
+			{
+				case 1 : e.agregarEmpleado();
+				break;
+				
+				case 2 : System.out.println("Ingrese un DNI: ");
+						 dni = entrada.nextInt();
+						 e.eliminarEmpleado(dni);
+				break;
+						 
+				case 3 : e.listarSueldos();
+				break;
+				
+				case 4 : e.totalAPagar();
+				break;
+				
+			}
+			
+			
+		}while(respuesta!=0);
+		
+	}
+
+}
