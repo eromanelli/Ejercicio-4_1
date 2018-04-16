@@ -1,0 +1,40 @@
+public class Empleado {
+	
+	private int dni;
+	private int nroLegajo;
+	private String categoria;
+	private float sueldo;
+	private int cantVentas;
+	private String nombre;
+	
+	public Empleado(int valor1, int valor2, String str1, float valor3, int valor4, String str2) 
+	{
+		dni = valor1;
+		nroLegajo = valor2;
+		categoria = str1;
+		sueldo = valor3;
+		cantVentas = valor4;
+		nombre = str2;
+	}
+	
+	public int devolverDni()
+	{
+		return dni;
+	}
+	
+	
+	public float devolverSueldo()
+	{
+		return sueldo;
+	}
+	
+	public String devolverNombre()
+	{
+		return nombre;
+	}
+	
+	public int devolverVentas()
+	{
+		return cantVentas;
+	}
+}
