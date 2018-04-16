@@ -1,0 +1,114 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Empresa {
+	
+	private int cuit;
+	private String razonSocial;
+	private ArrayList <Empleado> empleados;
+	
+	public Empresa(){
+		Scanner entrada = new Scanner (System.in);
+		System.out.print("Ingrese Cuit: ");
+		cuit = entrada.nextInt();
+		System.out.print("Ingrese Razon Social: ");
+		razonSocial = entrada.next();
+		empleados = new ArrayList<Empleado>();
+		
+	}
+	
+	// Punto 1. Confirmo que no exista el empleado antes de agregarlo
+
+	public void agregarEmpleado()
+	{
+		Scanner entrada = new Scanner (System.in);
+		System.out.println("Ingrese DNI: ");
+		int dni= entrada.nextInt();
+		if(buscarEmpleado(dni)==null)
+		{
+			System.out.println("Ingrese numero de legajo: ");
+			int nroLegajo = entrada.nextInt();
+			System.out.println("Ingrese categoria: ");
+			String categoria = entrada.next();
+			System.out.println("Ingrese el sueldo: ");
+			float sueldo = entrada.nextFloat();
+			System.out.println("Ingrese cantidad de ventas: ");
+			int cantVentas = entrada.nextInt();
+			System.out.println("Ingrese nombre: ");
+			String nombre = entrada.next();
+			
+			Empleado empleado = new Empleado(dni,nroLegajo,categoria,sueldo,cantVentas,nombre);
+			empleados.add(empleado);
+		}
+		else
+			System.out.println("Ya existe el empleado");
+			
+	}
+	
+	// Auxiliar para buscar en el array de empleados.
+	
+	public Empleado buscarEmpleado(int valor)
+	{
+		int i=0;
+		while((i<empleados.size()) && empleados.get(i).devolverDni()!=valor)
+		{
+			i++;
+		}
+		if(i==empleados.size())
+		{
+			return null;
+		}
+		else
+			return empleados.get(i);
+		
+	}
+	
+	// Punto 2
+	
+	public void eliminarEmpleado(int valor)
+	{
+		int i=0;
+		while((i<empleados.size()) && empleados.get(i).devolverDni()!=valor)
+		{
+			i++;
+		}
+		if(i==empleados.size())
+		{
+			System.out.println("No se enuentra el empleado buscado");
+		}
+		else
+			{
+				empleados.remove(i);
+			}
+		
+	}
+	
+	// Punto 3
+	
+	public void listarSueldos()
+	{
+		int i;
+		for(i=0;i<empleados.size();i++)
+		{
+			System.out.println("Nombre: "+empleados.get(i).devolverNombre()+"  Sueldo bruto: "+empleados.get(i).devolverSueldo());
+		}
+	}
+	
+	// Punto 4
+	
+	public void totalAPagar()
+	{
+		int contador=0,i,total;
+		for(i=0;i<empleados.size();i++)
+		{
+			contador+=empleados.get(i).devolverVentas();
+			
+		}
+		
+		total = contador*200;
+		
+		System.out.println("La empresa debe pagar: "+total+"por ventas");
+		
+	}
+	
+}
